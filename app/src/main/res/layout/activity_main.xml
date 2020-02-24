@@ -108,6 +108,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -117,10 +118,13 @@
         app:layout_constraintTop_toBottomOf="@+id/linear">
 
         <LinearLayout
+
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@drawable/background_view"
+            android:layout_margin="5dp">
 
             <TextView
                 android:id="@+id/first_day"
@@ -155,9 +159,11 @@
 
         <LinearLayout
             android:layout_width="0dp"
+            android:layout_margin="5dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@drawable/background_view">
             <TextView
                 android:id="@+id/second_day"
                 android:layout_width="match_parent"
@@ -191,9 +197,11 @@
 
         <LinearLayout
             android:layout_width="0dp"
+            android:layout_margin="5dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@drawable/background_view">
             <TextView
                 android:id="@+id/third_day"
                 android:layout_width="match_parent"
@@ -226,10 +234,12 @@
         </LinearLayout>
 
         <LinearLayout
+            android:layout_margin="5dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@drawable/background_view">
             <TextView
                 android:id="@+id/fourth_day"
                 android:layout_width="match_parent"
@@ -263,9 +273,11 @@
 
         <LinearLayout
             android:layout_width="0dp"
+            android:layout_margin="5dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@drawable/background_view">
             <TextView
                 android:id="@+id/fifth_day"
                 android:layout_width="match_parent"
