@@ -15,7 +15,9 @@ import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 public class SplashActivity extends AppCompatActivity {
 
     private static final int REQUEST_CODE = 1;
-    private String latLong;
+    public String latLong;
+    public static String latitude;
+    public static String longitude;
     TextView textView;
 
 
@@ -32,8 +34,11 @@ public class SplashActivity extends AppCompatActivity {
         FusedLocationProviderClient fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         fusedLocationProviderClient.getLastLocation().addOnSuccessListener(this, location -> {
             if (location != null) {
-                latLong = location.getLatitude() + "," + location.getLongitude();
+                latitude=String.valueOf(location.getLatitude());
+                longitude=String.valueOf(location.getLongitude());
+                latLong = latitude+ "," + longitude;
                 textView.setText(latLong);
+
             }
         });
     }
