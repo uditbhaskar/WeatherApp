@@ -283,7 +283,7 @@
                 android:layout_width="match_parent"
                 android:gravity="center"
                 android:layout_height="wrap_content"
-                android:text="WED"
+                android:text="FRI"
                 android:textColor="@color/colorPrimary"
                 android:layout_weight="1"/>
 
