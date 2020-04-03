@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".view.ui.MainActivity">
 
     <LinearLayout
         android:id="@+id/linear"
@@ -18,20 +18,21 @@
             android:id="@+id/mainLayout"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             android:layout_weight="3"
             android:orientation="vertical"
             android:padding="10dp"
-            android:weightSum="5.6"
+            android:weightSum="5.7"
             tools:ignore="NestedWeights">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginTop="25dp"
+                android:layout_marginStart="20dp"
                 android:weightSum="2"
                 android:layout_weight="0.7"
                 android:orientation="horizontal">
@@ -43,12 +44,12 @@
                     android:layout_weight="1.5"
                     android:layout_marginStart="30dp"
                     android:gravity="center"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="5dp"
                     android:hint="Bengaluru"
                     android:textColorHint="@color/colorPrimary"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="42sp" />
+                    android:textSize="47sp" />
                 <ImageButton
                     android:id="@+id/btn_search"
                     android:layout_width="0dp"
@@ -56,7 +57,7 @@
                     android:layout_weight="0.5"
                     android:padding="20dp"
                     android:adjustViewBounds="true"
-                    android:background="@drawable/background_search"
+                    android:background="@color/colorPrimaryDark"
                     android:contextClickable="true"
                     android:scaleType="fitCenter"
                     android:layout_marginEnd="20dp"
@@ -71,8 +72,9 @@
                 android:layout_height="0dp"
                 android:layout_gravity="center"
                 android:paddingStart="20dp"
+                android:layout_marginTop="5dp"
                 android:paddingEnd="1dp"
-                android:layout_weight="2.8"
+                android:layout_weight="2.5"
                 android:gravity="center"
                 android:text="25\u00B0"
                 android:textColor="@color/colorPrimary"
@@ -112,7 +114,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="0.8"
-                android:layout_marginTop="20dp"
+
                 android:divider="?android:dividerHorizontal"
                 android:gravity="center"
                 android:orientation="horizontal"
@@ -124,7 +126,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Sunrise: 04:00"
+                    android:text="04:00 am"
                     android:textColor="@color/colorPrimary"
                     android:textSize="24sp">
 
@@ -136,11 +138,42 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Sunset: 06:00"
+                    android:text="06:00 pm"
                     android:textColor="@color/colorPrimary"
                     android:textSize="24sp">
 
                 </TextView>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:divider="?android:dividerHorizontal"
+                android:orientation="horizontal"
+                android:showDividers="middle"
+                android:layout_weight="0.6"
+                >
+
+                <ImageView
+                    android:id="@+id/sunrise_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:src="@drawable/dawn">
+
+                </ImageView>
+
+
+                <ImageView
+                    android:id="@+id/sunset_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:src="@drawable/sunset">
+
+                </ImageView>
 
             </LinearLayout>
 
