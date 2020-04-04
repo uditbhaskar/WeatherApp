@@ -32,6 +32,7 @@
                 android:layout_marginStart="30dp"
                 android:layout_weight="1.5"
                 android:hint="City name"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ ,"
                 android:background="@drawable/background_search"
                 android:gravity="center"
                 android:paddingStart="0dp"
