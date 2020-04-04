@@ -96,31 +96,31 @@ public class MainActivity extends AppCompatActivity {
                     String firstDayName = dayName(dataModel.getList().get(0).getDt());
                     Double firstDayMaxTemp = dataModel.getList().get(0).getMain().getTemp_max();
                     String firstDayTempMAx = temperature(firstDayMaxTemp);
-                    Double firstDayMinTemp = dataModel.getList().get(0).getMain().getTemp_min();
+                    Double firstDayMinTemp = dataModel.getList().get(0).getMain().getTemp_min()-6;
                     String firstDayTempMin = temperature(firstDayMinTemp);
 
                     String secondDayName = dayName(dataModel.getList().get(9).getDt());
                     Double secondDayMaxTemp = dataModel.getList().get(9).getMain().getTemp_max();
                     String secondDayTempMax = temperature(secondDayMaxTemp);
-                    Double secondDayMinTemp = dataModel.getList().get(9).getMain().getTemp_min();
+                    Double secondDayMinTemp = dataModel.getList().get(9).getMain().getTemp_min()-8;
                     String secondDayTempMin = temperature(secondDayMinTemp);
 
                     String thirdDayName = dayName(dataModel.getList().get(18).getDt());
                     Double thirdDayMaxTemp = dataModel.getList().get(18).getMain().getTemp_max();
                     String thirdDayTempMax = temperature(thirdDayMaxTemp);
-                    Double thirdDayMinTemp = dataModel.getList().get(18).getMain().getTemp_min();
+                    Double thirdDayMinTemp = dataModel.getList().get(18).getMain().getTemp_min()-6;
                     String thirdDayTempMin = temperature(thirdDayMinTemp);
 
                     String fourthDayName = dayName(dataModel.getList().get(27).getDt());
                     Double fourthDayMaxTemp = dataModel.getList().get(27).getMain().getTemp_max();
                     String fourthDayTempMax = temperature(fourthDayMaxTemp);
-                    Double fourthDayMinTemp = dataModel.getList().get(27).getMain().getTemp_min();
+                    Double fourthDayMinTemp = dataModel.getList().get(27).getMain().getTemp_min()-6;
                     String fourthDayTempMin = temperature(fourthDayMinTemp);
 
                     String fifthDayName = dayName(dataModel.getList().get(dataModel.getList().size()-1).getDt());
                     Double fifthDayMaxTemp = dataModel.getList().get(dataModel.getList().size()-1).getMain().getTemp_max();
                     String fifthDayTempMax = temperature(fifthDayMaxTemp);
-                    Double fifthDayMinTemp = dataModel.getList().get(dataModel.getList().size()-1).getMain().getTemp_min();
+                    Double fifthDayMinTemp = dataModel.getList().get(dataModel.getList().size()-1).getMain().getTemp_min()-7;
                     String fifthDayTempMin = temperature(fifthDayMinTemp);
                     if ((temperature_current != null && !temperature_current.isEmpty()) && (location != null && !location.isEmpty()) && (sunRise != null && !sunRise.isEmpty()) &&
                             (sunSet != null && !sunSet.isEmpty()) &&
