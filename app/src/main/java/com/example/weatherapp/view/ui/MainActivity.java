@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
 import com.example.weatherapp.R;
 import com.example.weatherapp.services.model.DataModel;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     TextView tv_weatherDescription;
     TextView tv_sunrise;
     TextView tv_sunset;
+    LottieAnimationView lottieAnimationView;
 
     String cityName;
 
@@ -161,9 +163,11 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Enter valid city name!", Toast.LENGTH_LONG).show();
 
 
+
                     }
                 }else {
                     Toast.makeText(MainActivity.this, "Enter valid city name!", Toast.LENGTH_LONG).show();
+                    frameLayout.setVisibility(View.VISIBLE);
 
 
                 }
@@ -207,6 +211,7 @@ public class MainActivity extends AppCompatActivity {
         tv_weatherDescription = findViewById(R.id.tv_temp_description_current);
         tv_sunrise = findViewById(R.id.tv_sunrise_current);
         tv_sunset = findViewById(R.id.tv_sunset_current);
+
 
         linearLayout_forecastWeather = findViewById(R.id.linear_forecast_weather);
         tv_firstDayName = findViewById(R.id.tv_first_day);
