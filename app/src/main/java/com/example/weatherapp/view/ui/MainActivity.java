@@ -101,8 +101,8 @@ public class MainActivity extends AppCompatActivity {
                     String firstDayTemp = temperature(firstDayMinTemp,firstDayMaxTemp);
 
                     String secondDayName = dayName(dataModel.getList().get(9).getDt());
-                    Double secondDayMaxTemp = dataModel.getList().get(8).getMain().getTemp_max();
-                    Double secondDayMinTemp = dataModel.getList().get(10).getMain().getTemp_min();
+                    Double secondDayMaxTemp = dataModel.getList().get(9).getMain().getTemp_max();
+                    Double secondDayMinTemp = dataModel.getList().get(13).getMain().getTemp_min();
                     String secondDayTemp = temperature(secondDayMinTemp,secondDayMaxTemp);
 
                     String thirdDayName = dayName(dataModel.getList().get(16).getDt());
