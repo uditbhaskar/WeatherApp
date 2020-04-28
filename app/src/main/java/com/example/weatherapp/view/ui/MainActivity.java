@@ -42,19 +42,19 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout linearLayout_forecastWeather;
     TextView tv_firstDayName;
     TextView tv_maxTempFirstDay;
-    TextView tv_minTempFirstDay;
+
     TextView tv_secondDayName;
     TextView tv_maxTempSecondDay;
-    TextView tv_minTempSecondDay;
+
     TextView tv_thirdDayName;
     TextView tv_maxTempThirdDay;
-    TextView tv_minTempThirdDay;
+
     TextView tv_fourthDayName;
     TextView tv_maxTempFourthDay;
-    TextView tv_minTempFourthDay;
+
     TextView tv_fifthDayName;
     TextView tv_maxTempFifthDay;
-    TextView tv_minTempFifthDay;
+
 
     FrameLayout frameLayout;
 
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                     frameLayout.setVisibility(View.GONE);
                     String location = dataModel.getCity().getName();
                     Double temperature_current_string = dataModel.getList().get(0).getMain().getTemp();
-                    String temperature_current = temperature(temperature_current_string);
+                    String temperature_current = temperature_current(temperature_current_string);
 
                     String iconURL = dataModel.getList().get(0).getWeather().get(0).getIcon();
                     String imageUrl = "https://openweathermap.org/img/w/" + iconURL + ".png";
@@ -97,33 +97,29 @@ public class MainActivity extends AppCompatActivity {
 
                     String firstDayName = dayName(dataModel.getList().get(0).getDt());
                     Double firstDayMaxTemp = dataModel.getList().get(0).getMain().getTemp_max();
-                    String firstDayTempMAx = temperature(firstDayMaxTemp);
                     Double firstDayMinTemp = dataModel.getList().get(2).getMain().getTemp_min();
-                    String firstDayTempMin = temperature(firstDayMinTemp);
+                    String firstDayTemp = temperature(firstDayMinTemp,firstDayMaxTemp);
 
                     String secondDayName = dayName(dataModel.getList().get(9).getDt());
                     Double secondDayMaxTemp = dataModel.getList().get(8).getMain().getTemp_max();
-                    String secondDayTempMax = temperature(secondDayMaxTemp);
                     Double secondDayMinTemp = dataModel.getList().get(10).getMain().getTemp_min();
-                    String secondDayTempMin = temperature(secondDayMinTemp);
+                    String secondDayTemp = temperature(secondDayMinTemp,secondDayMaxTemp);
 
                     String thirdDayName = dayName(dataModel.getList().get(16).getDt());
                     Double thirdDayMaxTemp = dataModel.getList().get(15).getMain().getTemp_max();
-                    String thirdDayTempMax = temperature(thirdDayMaxTemp);
                     Double thirdDayMinTemp = dataModel.getList().get(18).getMain().getTemp_min();
-                    String thirdDayTempMin = temperature(thirdDayMinTemp);
+                    String thirdDayTemp = temperature(thirdDayMinTemp,thirdDayMaxTemp);
 
                     String fourthDayName = dayName(dataModel.getList().get(23).getDt());
                     Double fourthDayMaxTemp = dataModel.getList().get(24).getMain().getTemp_max();
-                    String fourthDayTempMax = temperature(fourthDayMaxTemp);
                     Double fourthDayMinTemp = dataModel.getList().get(20).getMain().getTemp_min();
-                    String fourthDayTempMin = temperature(fourthDayMinTemp);
+                    String fourthDayTemp = temperature(fourthDayMinTemp,fourthDayMaxTemp);
 
                     String fifthDayName = dayName(dataModel.getList().get(dataModel.getList().size()-7).getDt());
                     Double fifthDayMaxTemp = dataModel.getList().get(dataModel.getList().size()-1).getMain().getTemp_max();
-                    String fifthDayTempMax = temperature(fifthDayMaxTemp);
                     Double fifthDayMinTemp = dataModel.getList().get(dataModel.getList().size()-4).getMain().getTemp_min();
-                    String fifthDayTempMin = temperature(fifthDayMinTemp);
+                    String fifthDayTemp = temperature(fifthDayMinTemp,fifthDayMaxTemp);
+
                     if ((temperature_current != null && !temperature_current.isEmpty()) && (location != null && !location.isEmpty()) && (sunRise != null && !sunRise.isEmpty()) &&
                             (sunSet != null && !sunSet.isEmpty()) &&
                             (description != null && !description.isEmpty()) &&
@@ -140,24 +136,24 @@ public class MainActivity extends AppCompatActivity {
                         tv_sunset.setText(sunSet);
 
                         tv_firstDayName.setText(firstDayName);
-                        tv_maxTempFirstDay.setText(firstDayTempMAx);
-                        tv_minTempFirstDay.setText(firstDayTempMin);
+                        tv_maxTempFirstDay.setText(firstDayTemp);
+
 
                         tv_secondDayName.setText(secondDayName);
-                        tv_maxTempSecondDay.setText(secondDayTempMax);
-                        tv_minTempSecondDay.setText((secondDayTempMin));
+                        tv_maxTempSecondDay.setText(secondDayTemp);
+
 
                         tv_thirdDayName.setText(thirdDayName);
-                        tv_maxTempThirdDay.setText(thirdDayTempMax);
-                        tv_minTempThirdDay.setText((thirdDayTempMin));
+                        tv_maxTempThirdDay.setText(thirdDayTemp);
+
 
                         tv_fourthDayName.setText(fourthDayName);
-                        tv_maxTempFourthDay.setText(fourthDayTempMax);
-                        tv_minTempFourthDay.setText(fourthDayTempMin);
+                        tv_maxTempFourthDay.setText(fourthDayTemp);
+
 
                         tv_fifthDayName.setText(fifthDayName);
-                        tv_maxTempFifthDay.setText(fifthDayTempMax);
-                        tv_minTempFifthDay.setText(fifthDayTempMin);
+                        tv_maxTempFifthDay.setText(fifthDayTemp);
+
 
                     }else {
                         Toast.makeText(MainActivity.this, "Enter valid city name!", Toast.LENGTH_LONG).show();
@@ -177,10 +173,15 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public String temperature(Double temp) {
+    public String temperature(Double temp_max,Double temp_min) {
+        int temperature_max = (int) Math.round(temp_max - 273);
+        int temperature_min = (int) Math.round(temp_min - 273);
+        int temperature = (temperature_max+temperature_min)/2;
+        return String.valueOf(temperature)+ "\u00B0";
+    }
+    public String temperature_current(Double temp) {
         int temperature = (int) Math.round(temp - 273);
-        String tempFinal = String.valueOf(temperature)+ "\u00B0";
-        return tempFinal;
+        return String.valueOf(temperature)+ "\u00B0";
     }
 
     public String timeStamp(int timeStamp) {
@@ -216,19 +217,19 @@ public class MainActivity extends AppCompatActivity {
         linearLayout_forecastWeather = findViewById(R.id.linear_forecast_weather);
         tv_firstDayName = findViewById(R.id.tv_first_day);
         tv_maxTempFirstDay = findViewById(R.id.tv_first_day_max_temp);
-        tv_minTempFirstDay = findViewById(R.id.tv_first_day_min_temp);
+
         tv_secondDayName = findViewById(R.id.tv_second_day);
         tv_maxTempSecondDay = findViewById(R.id.tv_second_day_max_temp);
-        tv_minTempSecondDay = findViewById(R.id.tv_second_day_min_temp);
+
         tv_thirdDayName = findViewById(R.id.tv_third_day);
         tv_maxTempThirdDay = findViewById(R.id.tv_third_day_max_temp);
-        tv_minTempThirdDay = findViewById(R.id.tv_third_day_min_temp);
+
         tv_fourthDayName = findViewById(R.id.tv_fourth_day);
         tv_maxTempFourthDay = findViewById(R.id.tv_fourth_day_max_temp);
-        tv_minTempFourthDay = findViewById(R.id.tv_fourth_day_min_temp);
+
         tv_fifthDayName = findViewById(R.id.tv_fifth_day);
         tv_maxTempFifthDay = findViewById(R.id.tv_fifth_day_max_temp);
-        tv_minTempFifthDay = findViewById(R.id.tv_fifth_day_min_temp);
+
         frameLayout = findViewById(R.id.frameLayout);
 
     }

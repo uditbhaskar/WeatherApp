@@ -84,9 +84,9 @@
                     android:layout_marginTop="5dp"
                     android:layout_weight="2.9"
                     android:gravity="center"
-                    android:text="25\u00B0"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="200sp" />
+                    android:autoSizeTextType="uniform"
+                    android:textSize="150sp"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -205,7 +205,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/background_view"
                 android:orientation="vertical"
-                android:weightSum="3.4">
+                >
 
                 <TextView
                     android:id="@+id/tv_first_day"
@@ -213,7 +213,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="MON"
+
                     android:textColor="@color/colorPrimary"
                     android:textSize="15sp" />
 
@@ -222,7 +222,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.2"
                     android:gravity="center"
-                    android:text="@string/max"
+                    android:text="@string/temp"
                     android:textColor="#636363"
                     android:textSize="12sp" />
 
@@ -232,28 +232,11 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="25\u00B0"
+
                     android:textColor="@color/colorPrimary"
                     android:textSize="17sp" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.2"
-                    android:gravity="center"
-                    android:text="@string/min"
-                    android:textColor="#636363"
-                    android:textSize="12sp" />
 
-                <TextView
-                    android:id="@+id/tv_first_day_min_temp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="14\u00B0"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="17sp" />
 
             </LinearLayout>
 
@@ -271,7 +254,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="TUE"
+
                     android:textColor="@color/colorPrimary"
                     android:textSize="15sp" />
 
@@ -280,7 +263,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.2"
                     android:gravity="center"
-                    android:text="@string/max"
+                    android:text="@string/temp"
                     android:textColor="#636363"
                     android:textSize="12sp" />
 
@@ -291,28 +274,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="23\u00B0"
                     android:textColor="@color/colorPrimary"
                     android:textSize="17sp" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.2"
-                    android:gravity="center"
-                    android:text="@string/min"
-                    android:textColor="#636363"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:id="@+id/tv_second_day_min_temp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="15\u00B0"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="17sp" />
 
             </LinearLayout>
 
@@ -330,7 +294,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="WED"
+
                     android:textColor="@color/colorPrimary" />
 
                 <TextView
@@ -338,7 +302,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.2"
                     android:gravity="center"
-                    android:text="@string/max"
+                    android:text="@string/temp"
                     android:textColor="#636363"
                     android:textSize="12sp" />
 
@@ -348,28 +312,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="19\u00B0"
                     android:textColor="@color/colorPrimary"
                     android:textSize="17sp" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.2"
-                    android:gravity="center"
-                    android:text="@string/min"
-                    android:textColor="#636363"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:id="@+id/tv_third_day_min_temp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="12\u00B0"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="17sp" />
 
             </LinearLayout>
 
@@ -387,7 +332,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="THU"
+
                     android:textColor="@color/colorPrimary" />
 
                 <TextView
@@ -395,7 +340,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.2"
                     android:gravity="center"
-                    android:text="@string/max"
+                    android:text="@string/temp"
                     android:textColor="#636363"
                     android:textSize="12sp" />
 
@@ -405,28 +350,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="20\u00B0"
                     android:textColor="@color/colorPrimary"
                     android:textSize="17sp" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.2"
-                    android:gravity="center"
-                    android:text="@string/min"
-                    android:textColor="#636363"
-                    android:textSize="12sp" />
 
-                <TextView
-                    android:id="@+id/tv_fourth_day_min_temp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="14\u00B0"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="17sp" />
 
             </LinearLayout>
 
@@ -444,7 +371,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="FRI"
+
                     android:textColor="@color/colorPrimary" />
 
                 <TextView
@@ -452,7 +379,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.2"
                     android:gravity="center"
-                    android:text="@string/max"
+                    android:text="@string/temp"
                     android:textColor="#636363"
                     android:textSize="12sp" />
 
@@ -462,28 +389,12 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="19\u00B0"
                     android:textColor="@color/colorPrimary"
                     android:textSize="17sp" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.2"
-                    android:gravity="center"
-                    android:text="@string/min"
-                    android:textColor="#636363"
-                    android:textSize="12sp" />
 
-                <TextView
-                    android:id="@+id/tv_fifth_day_min_temp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="18\u00B0"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="17sp" />
+
+
 
             </LinearLayout>
 
