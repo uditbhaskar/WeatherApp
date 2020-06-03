@@ -6,4 +6,4 @@ This is a smiple weather app made using MVVM architecture. It uses openWeather A
 
 
 
-<img src="https://user-images.githubusercontent.com/39986507/80484060-ba1e9700-8974-11ea-85cd-8b075547bc3a.png" width="290">   <img src="https://user-images.githubusercontent.com/39986507/83604867-83035d00-a594-11ea-8e4e-cec3ba1514b4.png" width="290">
+<img src="https://user-images.githubusercontent.com/39986507/80484060-ba1e9700-8974-11ea-85cd-8b075547bc3a.png" width="290">   <img src="https://user-images.githubusercontent.com/39986507/83606871-e5119180-a597-11ea-856d-734343583f30.png" width="290">
