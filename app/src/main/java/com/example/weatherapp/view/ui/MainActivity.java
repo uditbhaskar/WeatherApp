@@ -1,12 +1,10 @@
 package com.example.weatherapp.view.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
-import android.util.Size;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
@@ -14,6 +12,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
@@ -26,7 +28,7 @@ import java.util.Date;
 import java.util.TimeZone;
 
 public class MainActivity extends AppCompatActivity {
-
+    FrameLayout frameLayout_no_result_view;
     LinearLayout linearLayout_currentDayWeather;
     ImageButton btn_search;
     EditText et_location;
@@ -36,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
     TextView tv_sunrise;
     TextView tv_sunset;
     LottieAnimationView lottieAnimationView;
-
+    Boolean successResult;
+    WeatherInfoViewModel viewModel;
     String cityName;
 
     LinearLayout linearLayout_forecastWeather;
@@ -56,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
     TextView tv_maxTempFifthDay;
 
 
-    FrameLayout frameLayout;
+    FrameLayout frameLayout_progress_bar;
 
 
     @Override
@@ -69,22 +72,26 @@ public class MainActivity extends AppCompatActivity {
         btn_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                frameLayout_no_result_view.setVisibility(View.GONE);
+                frameLayout_progress_bar.setVisibility(View.VISIBLE);
                 cityName = et_location.getText().toString();
                 callViewModel(cityName);
+                dismissKeyboard();
             }
         });
 
     }
 
     private void callViewModel(String cityName) {
-        WeatherInfoViewModel viewModel = ViewModelProviders.of(this).get(WeatherInfoViewModel.class);
-        viewModel.getWeatherInfo(cityName).observe(this, new Observer<DataModel>() {
+
+        viewModel.getWeatherInfo(cityName.trim());
+        viewModel.weatherInfo.observe(this, new Observer<DataModel>() {
             @Override
             public void onChanged(DataModel dataModel) {
-                Boolean result = viewModel.getSuccess().getValue();
-
+                Boolean result = getSuccess();
+                frameLayout_progress_bar.setVisibility(View.GONE);
                 if (dataModel != null && result) {
-                    frameLayout.setVisibility(View.GONE);
+
                     String location = dataModel.getCity().getName();
                     Double temperature_current_string = dataModel.getList().get(0).getMain().getTemp();
                     String temperature_current = temperature_current(temperature_current_string);
@@ -98,27 +105,27 @@ public class MainActivity extends AppCompatActivity {
                     String firstDayName = dayName(dataModel.getList().get(0).getDt());
                     Double firstDayMaxTemp = dataModel.getList().get(0).getMain().getTemp_max();
                     Double firstDayMinTemp = dataModel.getList().get(2).getMain().getTemp_min();
-                    String firstDayTemp = temperature(firstDayMinTemp,firstDayMaxTemp);
+                    String firstDayTemp = temperature(firstDayMinTemp, firstDayMaxTemp);
 
                     String secondDayName = dayName(dataModel.getList().get(9).getDt());
                     Double secondDayMaxTemp = dataModel.getList().get(9).getMain().getTemp_max();
                     Double secondDayMinTemp = dataModel.getList().get(13).getMain().getTemp_min();
-                    String secondDayTemp = temperature(secondDayMinTemp,secondDayMaxTemp);
+                    String secondDayTemp = temperature(secondDayMinTemp, secondDayMaxTemp);
 
                     String thirdDayName = dayName(dataModel.getList().get(16).getDt());
                     Double thirdDayMaxTemp = dataModel.getList().get(15).getMain().getTemp_max();
                     Double thirdDayMinTemp = dataModel.getList().get(18).getMain().getTemp_min();
-                    String thirdDayTemp = temperature(thirdDayMinTemp,thirdDayMaxTemp);
+                    String thirdDayTemp = temperature(thirdDayMinTemp, thirdDayMaxTemp);
 
                     String fourthDayName = dayName(dataModel.getList().get(23).getDt());
                     Double fourthDayMaxTemp = dataModel.getList().get(24).getMain().getTemp_max();
                     Double fourthDayMinTemp = dataModel.getList().get(20).getMain().getTemp_min();
-                    String fourthDayTemp = temperature(fourthDayMinTemp,fourthDayMaxTemp);
+                    String fourthDayTemp = temperature(fourthDayMinTemp, fourthDayMaxTemp);
 
-                    String fifthDayName = dayName(dataModel.getList().get(dataModel.getList().size()-7).getDt());
-                    Double fifthDayMaxTemp = dataModel.getList().get(dataModel.getList().size()-1).getMain().getTemp_max();
-                    Double fifthDayMinTemp = dataModel.getList().get(dataModel.getList().size()-4).getMain().getTemp_min();
-                    String fifthDayTemp = temperature(fifthDayMinTemp,fifthDayMaxTemp);
+                    String fifthDayName = dayName(dataModel.getList().get(dataModel.getList().size() - 7).getDt());
+                    Double fifthDayMaxTemp = dataModel.getList().get(dataModel.getList().size() - 1).getMain().getTemp_max();
+                    Double fifthDayMinTemp = dataModel.getList().get(dataModel.getList().size() - 4).getMain().getTemp_min();
+                    String fifthDayTemp = temperature(fifthDayMinTemp, fifthDayMaxTemp);
 
                     if ((temperature_current != null && !temperature_current.isEmpty()) && (location != null && !location.isEmpty()) && (sunRise != null && !sunRise.isEmpty()) &&
                             (sunSet != null && !sunSet.isEmpty()) &&
@@ -155,15 +162,16 @@ public class MainActivity extends AppCompatActivity {
                         tv_maxTempFifthDay.setText(fifthDayTemp);
 
 
-                    }else {
+                    } else {
                         Toast.makeText(MainActivity.this, "Enter valid city name!", Toast.LENGTH_LONG).show();
-
+                        frameLayout_no_result_view.setVisibility(View.VISIBLE);
 
 
                     }
-                }else {
+                } else {
                     Toast.makeText(MainActivity.this, "Enter valid city name!", Toast.LENGTH_LONG).show();
-                    frameLayout.setVisibility(View.VISIBLE);
+                    frameLayout_no_result_view.setVisibility(View.VISIBLE);
+                    et_location.setText("");
 
 
                 }
@@ -173,24 +181,35 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public String temperature(Double temp_max,Double temp_min) {
+    private Boolean getSuccess() {
+        viewModel.getSuccess();
+        viewModel.success.observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                successResult = aBoolean;
+            }
+        });
+        return successResult;
+    }
+
+    public String temperature(Double temp_max, Double temp_min) {
         int temperature_max = (int) Math.round(temp_max - 273);
         int temperature_min = (int) Math.round(temp_min - 273);
-        int temperature = (temperature_max+temperature_min)/2;
-        return String.valueOf(temperature)+ "\u00B0";
+        int temperature = (temperature_max + temperature_min) / 2;
+        return String.valueOf(temperature) + "\u00B0";
     }
+
     public String temperature_current(Double temp) {
         int temperature = (int) Math.round(temp - 273);
-        return String.valueOf(temperature)+ "\u00B0";
+        return String.valueOf(temperature) + "\u00B0";
     }
 
     public String timeStamp(int timeStamp) {
 
         Date date = new Date(timeStamp * 1000L);
-        SimpleDateFormat jdf = new SimpleDateFormat("HH:mm a");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat jdf = new SimpleDateFormat("HH:mm a");
         jdf.setTimeZone(TimeZone.getTimeZone("Asia/Kolkata"));
-        String java_date = jdf.format(date);
-        return java_date;
+        return jdf.format(date);
 
     }
 
@@ -202,8 +221,15 @@ public class MainActivity extends AppCompatActivity {
         return java_date;
     }
 
+    public void dismissKeyboard() {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        assert imm != null;
+        imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(), 0);
+    }
 
     private void init() {
+        viewModel = ViewModelProviders.of(this).get(WeatherInfoViewModel.class);
+
         linearLayout_currentDayWeather = findViewById(R.id.linear_current_day_weather);
         btn_search = findViewById(R.id.btn_search);
         et_location = findViewById(R.id.et_location_current);
@@ -230,7 +256,8 @@ public class MainActivity extends AppCompatActivity {
         tv_fifthDayName = findViewById(R.id.tv_fifth_day);
         tv_maxTempFifthDay = findViewById(R.id.tv_fifth_day_max_temp);
 
-        frameLayout = findViewById(R.id.frameLayout);
-
+        frameLayout_progress_bar = findViewById(R.id.frameLayout_progress_bar);
+        frameLayout_no_result_view = findViewById(R.id.frameLayout_no_result);
+        frameLayout_progress_bar.setVisibility(View.VISIBLE);
     }
 }

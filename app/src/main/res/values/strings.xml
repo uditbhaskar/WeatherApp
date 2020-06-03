@@ -3,4 +3,5 @@
     <string name="max">Max</string>
     <string name="min">Min</string>
     <string name="temp">Temp</string>
+    <string name="no_result">No Result</string>
 </resources>
