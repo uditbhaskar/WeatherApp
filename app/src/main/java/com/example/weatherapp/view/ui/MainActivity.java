@@ -37,7 +37,8 @@ public class MainActivity extends AppCompatActivity {
     TextView tv_weatherDescription;
     TextView tv_sunrise;
     TextView tv_sunset;
-    LottieAnimationView lottieAnimationView;
+    TextView tv_cityName;
+
     Boolean successResult;
     WeatherInfoViewModel viewModel;
     String cityName;
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     FrameLayout frameLayout_progress_bar;
+    private Boolean result;
 
 
     @Override
@@ -74,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 frameLayout_no_result_view.setVisibility(View.GONE);
                 frameLayout_progress_bar.setVisibility(View.VISIBLE);
-                cityName = et_location.getText().toString();
+                cityName = et_location.getText().toString().trim();
                 callViewModel(cityName);
                 dismissKeyboard();
             }
@@ -88,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         viewModel.weatherInfo.observe(this, new Observer<DataModel>() {
             @Override
             public void onChanged(DataModel dataModel) {
-                Boolean result = getSuccess();
+                result = getSuccess();
                 frameLayout_progress_bar.setVisibility(View.GONE);
                 if (dataModel != null && result) {
 
@@ -134,8 +136,8 @@ public class MainActivity extends AppCompatActivity {
                             (imageUrl != null && !imageUrl.isEmpty()) &&
                             (firstDayName != null && !firstDayName.isEmpty()) &&
                             (fifthDayName != null && !fifthDayName.isEmpty())) {
-
-                        et_location.setText(location);
+                        frameLayout_no_result_view.setVisibility(View.GONE);
+                        tv_cityName.setText("City : "+location);
                         tv_temperature_current.setText(temperature_current);
                         Glide.with(MainActivity.this).load(imageUrl).into(iv_WeatherIcon);
                         tv_weatherDescription.setText(description);
@@ -163,13 +165,11 @@ public class MainActivity extends AppCompatActivity {
 
 
                     } else {
-                        Toast.makeText(MainActivity.this, "Enter valid city name!", Toast.LENGTH_LONG).show();
                         frameLayout_no_result_view.setVisibility(View.VISIBLE);
 
 
                     }
                 } else {
-                    Toast.makeText(MainActivity.this, "Enter valid city name!", Toast.LENGTH_LONG).show();
                     frameLayout_no_result_view.setVisibility(View.VISIBLE);
                     et_location.setText("");
 
@@ -255,7 +255,7 @@ public class MainActivity extends AppCompatActivity {
 
         tv_fifthDayName = findViewById(R.id.tv_fifth_day);
         tv_maxTempFifthDay = findViewById(R.id.tv_fifth_day_max_temp);
-
+        tv_cityName = findViewById(R.id.tv_city);
         frameLayout_progress_bar = findViewById(R.id.frameLayout_progress_bar);
         frameLayout_no_result_view = findViewById(R.id.frameLayout_no_result);
         frameLayout_progress_bar.setVisibility(View.VISIBLE);
